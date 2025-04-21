@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff6347" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>Pomodoro App</title>
+</head>
+<body>
+  <h1>Pomodoro Timer ⏳</h1>
+  
+  <div class="custom-time">
+    <label>Pomodoro:</label>
+    <input type="number" id="customPomodoro" value="60" min="1" />
+    <label>Short Break:</label>
+    <input type="number" id="customShort" value="5" min="1" />
+    <label>Long Break:</label>
+    <input type="number" id="customLong" value="15" min="1" />
+    <button onclick="applyCustomTimes()">Set Times</button>
+  </div>
+
+  <div class="progress-container">
+    <div id="progressBar"></div>
+  </div>
+
+  <div class="timer" id="timer">60:00</div>
+
+  <div class="mode-switch">
+    <button onclick="setMode('pomodoro')">Pomodoro</button>
+    <button onclick="setMode('short')">Short Break</button>
+    <button onclick="setMode('long')">Long Break</button>
+  </div>
+
+  <div class="controls">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="pauseTimer()">Pause</button>
+    <button onclick="resetTimer()">Reset</button>
+    <button class="secondary" onclick="toggleDarkMode()">🌙</button>
+  </div>
+
+  <div class="stats">
+    Completed Today: <span id="dailyCount">0</span> | Total: <span id="count">0</span>
+  </div>
+
+  <div class="todo">
+    <input id="taskInput" type="text" placeholder="Add a task..." />
+    <ul id="taskList"></ul>
+  </div>
+
+  <audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
+
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+    Notification.requestPermission();
+  </script>
+</body>
+</html>
