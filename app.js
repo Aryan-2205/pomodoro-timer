@@ -1,4 +1,4 @@
-let time = 60 * 60;
+let time = 25 * 60;
 let timerInterval;
 let isRunning = false;
 let currentMode = 'pomodoro';
@@ -8,10 +8,24 @@ let dailyCount = dailyDate === new Date().toLocaleDateString() ? +localStorage.g
 let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
 const timeSettings = {
-  pomodoro: 60 * 60,
+  pomodoro: 25 * 60,
   short: 5 * 60,
   long: 15 * 60,
 };
+
+let motivationalQuotes = [
+  "Great job! Keep up the good work!",
+  "Productivity is your superpower!",
+  "One step at a time - you're doing amazing!",
+  "Every pomodoro brings you closer to your goals!",
+  "Stay focused, stay awesome!",
+  "You're making progress with every session!",
+  "Consistency is key - and you're nailing it!",
+  "Your dedication is inspiring!",
+  "Another session down, another step forward!",
+  "The expert in anything was once a beginner - keep going!"
+];
+let usedQuotes = [];
 
 const timerEl = document.getElementById('timer');
 const alarmSound = document.getElementById('alarmSound');
@@ -42,6 +56,26 @@ function setMode(mode) {
   resetTimer();
 }
 
+function showMotivationalQuote() {
+  if (motivationalQuotes.length === 0) {
+    motivationalQuotes = [...usedQuotes];
+    usedQuotes = [];
+  }
+  
+  const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
+  const quote = motivationalQuotes.splice(randomIndex, 1)[0];
+  usedQuotes.push(quote);
+  
+  const quoteEl = document.createElement('div');
+  quoteEl.className = 'motivational-quote';
+  quoteEl.textContent = quote;
+  document.body.appendChild(quoteEl);
+  
+  setTimeout(() => {
+    quoteEl.remove();
+  }, 300000); // 5 minutes = 300,000 milliseconds
+}
+
 function startTimer() {
   if (isRunning) return;
   isRunning = true;
@@ -65,6 +99,7 @@ function startTimer() {
         dailyCountEl.textContent = dailyCount;
         setMode('short');
         startTimer();
+        showMotivationalQuote();
       } else {
         setMode('pomodoro');
         startTimer();
@@ -88,6 +123,7 @@ function resetTimer() {
 
 function toggleDarkMode() {
   document.body.classList.toggle('dark');
+  renderTasks();
 }
 
 function applyCustomTimes() {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#ff6347" />
-  <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff6347">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
   <title>Pomodoro App</title>
 </head>
 <body>
@@ -13,11 +13,11 @@
   
   <div class="custom-time">
     <label>Pomodoro:</label>
-    <input type="number" id="customPomodoro" value="60" min="1" />
+    <input type="number" id="customPomodoro" value="25" min="1">
     <label>Short Break:</label>
-    <input type="number" id="customShort" value="5" min="1" />
+    <input type="number" id="customShort" value="5" min="1">
     <label>Long Break:</label>
-    <input type="number" id="customLong" value="15" min="1" />
+    <input type="number" id="customLong" value="15" min="1">
     <button onclick="applyCustomTimes()">Set Times</button>
   </div>
 
@@ -25,7 +25,7 @@
     <div id="progressBar"></div>
   </div>
 
-  <div class="timer" id="timer">60:00</div>
+  <div class="timer" id="timer">25:00</div>
 
   <div class="mode-switch">
     <button onclick="setMode('pomodoro')">Pomodoro</button>
@@ -45,11 +45,11 @@
   </div>
 
   <div class="todo">
-    <input id="taskInput" type="text" placeholder="Add a task..." />
+    <input id="taskInput" type="text" placeholder="Add a task...">
     <ul id="taskList"></ul>
   </div>
 
-  <audio id="alarmSound" src="https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"></audio>
+<audio id="alarmSound" src="alarm.mp3"></audio>
 
   <script src="app.js"></script>
   <script>

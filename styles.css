@@ -119,3 +119,34 @@ h1 {
   color: #eee;
   border-color: #666;
 }
+
+.motivational-quote {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 99, 71, 0.9);
+  color: white;
+  padding: 15px 25px;
+  border-radius: 30px;
+  animation: floatUp 1s ease-out forwards;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 80%;
+  text-align: center;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dark .motivational-quote {
+  background: rgba(229, 83, 60, 0.9);
+}
